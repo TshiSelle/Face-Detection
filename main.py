@@ -13,7 +13,7 @@ SECONDS_TO_RECORD_AFTER_DETECTION = 5
 
 frameSize = (int(show.get(3)), int(show.get(4)))
 fourcc = cv.VideoWriter_fourcc(*"mp4v")
-out = cv.VideoWriter("Footage.mp4", fourcc, 30, frameSize)
+
 #program loop
 while True:
   _, frame = show.read()
@@ -27,6 +27,8 @@ while True:
       timer_begun = False
     else:
       detection = True
+      currentTime = datetime.datetime.now().strftime("%d-%m-%Y-%H-%M-%S")
+      out = cv.VideoWriter(f"{currentTime}.mp4", fourcc, 30, frameSize)
     
   out.write(frame)
   
