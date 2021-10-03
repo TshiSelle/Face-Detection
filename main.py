@@ -29,6 +29,17 @@ while True:
       detection = True
       currentTime = datetime.datetime.now().strftime("%d-%m-%Y-%H-%M-%S")
       out = cv.VideoWriter(f"{currentTime}.mp4", fourcc, 30, frameSize)
+      print("Recording has begun")
+  elif detection:
+    if timer_begun:
+      if time.time() - detection_lost >= SECONDS_TO_RECORD_AFTER_DETECTION:
+        detection = False;
+        timer_begun = False
+        out.release()
+        print("Recording terminated")
+    else:
+       timer_begun = True
+       detection_lost = time.time()
     
   out.write(frame)
   
