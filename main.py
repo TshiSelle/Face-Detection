@@ -12,3 +12,4 @@ while True:
     break
   
 show.release()
+cv.destroyAllWindows()
