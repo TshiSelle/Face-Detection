@@ -6,7 +6,10 @@ show = cv.VideoCapture(0)
 
 face_det = cv.CascadeClassifier(cv.data.haarcascades + "haarcascade_frontalface_default.xml")
 body_det = cv.CascadeClassifier(cv.data.haarcascades + "haarcascade_fullbody_default.xml")
-recording = True
+detection = True
+detection_lost = None
+timer_begun = False
+SECONDS_TO_RECORD_AFTER_DETECTION = 5
 
 frameSize = (int(show.get(3)), int(show.get(4)))
 fourcc = cv.VideoWriter_fourcc(*"mp4v")
@@ -20,7 +23,10 @@ while True:
   bodies = body_det.detectMultiScale(gray, 1.3, 5)
   
   if len(faces) + len(bodies) > 0:
-    recording = True
+    if detection:
+      timer_begun = False
+    else:
+      detection = True
     
   out.write(frame)
   
