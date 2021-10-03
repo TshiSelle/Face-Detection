@@ -14,6 +14,9 @@ while True:
   gray = cv.cvtColor(frame, cv.COLOR_BGR2GRAY)
   faces = face_det.detectMultiScale(gray, 1.3, 5)
   
+  for(x,y,width, height) in faces:
+    cv.rectangle(frame, (x, y), (x + width, y + height), (130, 0, 75), 3)
+  
   cv.imshow("Footage", frame)
   
   if cv.waitKey(1) == ord('q'):
