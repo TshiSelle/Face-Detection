@@ -8,3 +8,6 @@ while True:
   _, frame = show.read()
   cv.imshow("Footage", frame)
   
+  if cv.waitKey(1) == ord('q'):
+    break
+  
