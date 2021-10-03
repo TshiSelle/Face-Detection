@@ -40,15 +40,15 @@ while True:
     else:
        timer_begun = True
        detection_lost = time.time()
-    
-  out.write(frame)
+    if detection:
+     out.write(frame)
   
   #for(x,y,width, height) in faces:
   #  cv.rectangle(frame, (x, y), (x + width, y + height), (130, 0, 75), 3)
   #for(x,y,width, height) in bodies:
   #  cv.rectangle(frame, (x, y), (x + width, y + height), (0, 20, 200), 3)
   
-  cv.imshow("Footage", frame)
+  cv.imshow("Camera", frame)
   
   if cv.waitKey(1) == ord('q'):
     break
