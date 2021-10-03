@@ -10,7 +10,7 @@ recording = True
 
 frameSize = (int(show.get(3)), int(show.get(4)))
 fourcc = cv.VideoWriter_fourcc(*"mp4v")
-
+out = cv.VideoWriter("Footage.mp4", fourcc, 30, frameSize)
 #program loop
 while True:
   _, frame = show.read()
@@ -21,6 +21,8 @@ while True:
   
   if len(faces) + len(bodies) > 0:
     recording = True
+    
+  out.write(frame)
   
   #for(x,y,width, height) in faces:
   #  cv.rectangle(frame, (x, y), (x + width, y + height), (130, 0, 75), 3)
@@ -33,5 +35,6 @@ while True:
     break
 # end of loop
 
+out.release()
 show.release()
 cv.destroyAllWindows()
