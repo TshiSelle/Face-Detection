@@ -8,6 +8,8 @@ face_det = cv.CascadeClassifier(cv.data.haarcascades + "haarcascade_frontalface_
 body_det = cv.CascadeClassifier(cv.data.haarcascades + "haarcascade_fullbody_default.xml")
 while True:
   _, frame = show.read()
+  
+  gray = cv.cvtColor(frame, cv.COLOR_BGR2GRAY)
   cv.imshow("Footage", frame)
   
   if cv.waitKey(1) == ord('q'):
