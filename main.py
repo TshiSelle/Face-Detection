@@ -9,6 +9,7 @@ body_det = cv.CascadeClassifier(cv.data.haarcascades + "haarcascade_fullbody_def
 recording = True
 
 frameSize = (int(show.get(3)), int(show.get(4)))
+fourcc = cv.VideoWriter_fourcc(*"mp4v")
 
 #program loop
 while True:
